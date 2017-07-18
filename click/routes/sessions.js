@@ -3,20 +3,14 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    res.format({
-        html: function () {
-            res.send(req.session.value);
-        }
-    });
+    var session = req.session.value;
+    console.log(session);
+    //res.render('index', { session: session });
 });
 
 router.post('/', function (req, res, next) {
-    res.format({
-        html: function () {
-            req.session.value = req.body.value;
-            res.send(req.session.value);
-        }
-    })
+    req.session.value = req.body.value;
+    res.send(req.session.value);
 });
 
 

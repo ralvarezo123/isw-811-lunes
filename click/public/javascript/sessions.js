@@ -7,13 +7,26 @@ var Sessions = {
     }
 };
 $(document).ready(function () {
+    session();
     $('#click').on("click", function () {
         var btn_value = $(this).val();
         btn_value++;
         $(this).val(btn_value);
-        $(this).text(btn_value)
-        
-        Sessions.insert({value: btn_value});
-        alert(req.sessions.value);
+        $(this).text(btn_value);
+
+        var data = { value: btn_value };
+        Sessions.insert(data)
+            .done(function (json) { })
+            .fail(function (xhr, textStatus, errorThrown) {
+                alert("xhr.responseText");
+            });
     });
 });
+
+function session() {
+    Sessions.getData().done(function (json) {
+        console.log(json.value);
+        //json.platillos.forEach(function (platillo) {
+        //});
+    });
+}
