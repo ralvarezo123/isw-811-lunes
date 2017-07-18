@@ -13,7 +13,7 @@ $(document).ready(function () {
         $(this).val(btn_value);
         $(this).text(btn_value)
         
-        Sessions.insert(btn_value);
+        Sessions.insert({value: btn_value});
         alert(req.sessions.value);
     });
 });
