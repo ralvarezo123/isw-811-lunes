@@ -1,42 +1,25 @@
-var cont = 0;
 $(document).ready(function () {
     $('#btnlocalStorage').click(function () {
         clickCounter();
-    })
+    });
 
     $('#btnResetLocalStorage').click(function () {
         clickReset();
-    })
-
-    if (!localStorage.clickcount) {
-        $("#btnlocalStorage").text("0");
-
-    } else {
-        $("#btnlocalStorage").text(localStorage.clickcount);
-
-    }
-
+    });
+    refresh();
 });
 
-function clickCounter() {
-    if (typeof (Storage) !== "undefined") {
-        if (localStorage.clickcount) {
-            localStorage.clickcount = Number(localStorage.clickcount) + 1;
-        } else {
-            localStorage.clickcount = 1;
-        }
-        $("#btnlocalStorage").text(localStorage.clickcount);
+function refresh() {
+   $("#btnlocalStorage").text(localStorage.clickcount || 0);
+}
 
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-    }
+function clickCounter() {
+    var cont = localStorage.clickcount || 0;
+    localStorage.clickcount = Number(cont) + 1;
+    refresh();
 }
 
 function clickReset(){
-    if(typeof (Storage) !== "undefined"){
-        if(localStorage.clickcount){
-            localStorage.clickcount = 0;
-            $("#btnlocalStorage").text(localStorage.clickcount);
-        }
-    }
+    localStorage.clickcount = 0;
+    refresh();
 }
