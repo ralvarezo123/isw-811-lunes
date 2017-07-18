@@ -4,6 +4,10 @@ $(document).ready(function () {
         clickCounter();
     })
 
+    $('#btnResetLocalStorage').click(function () {
+        clickReset();
+    })
+
     if (!localStorage.clickcount) {
         $("#btnlocalStorage").text("0");
 
@@ -25,5 +29,14 @@ function clickCounter() {
 
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+
+function clickReset(){
+    if(typeof (Storage) !== "undefined"){
+        if(localStorage.clickcount){
+            localStorage.clickcount = 0;
+            $("#btnlocalStorage").text(localStorage.clickcount);
+        }
     }
 }
