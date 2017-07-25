@@ -34,10 +34,10 @@ block content
               .panel-body
                 .row
                   .col-md-12
-                    button.btn.btn-primary 0
+                    button#btnlocalStorage.btn.btn-primary 
                 .row
                   .col-md-12
-                    button.btn.btn-block reset
+                    button#btnResetLocalStorage.btn.btn-block reset
           .col-md-3.text-center
             .panel.panel-default
               .panel-heading
@@ -49,4 +49,6 @@ block content
                 .row
                   .col-md-12
                     button.btn.btn-block reset  
-    script(src='/javascript/sessions.js')
+                    button.btn.btn-block reset
+  script(src='/javascript/sessions.js')      
+  script(src="/javascripts/localstorage.js")
