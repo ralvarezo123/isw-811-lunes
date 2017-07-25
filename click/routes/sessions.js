@@ -3,9 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    var session = req.session.value;
-    console.log(session);
-    //res.render('index', { session: session });
+     res.send(req.session.value);
 });
 
 router.post('/', function (req, res, next) {

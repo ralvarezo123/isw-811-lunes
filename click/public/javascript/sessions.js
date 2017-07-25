@@ -7,7 +7,6 @@ var Sessions = {
     }
 };
 $(document).ready(function () {
-    session();
     $('#click').on("click", function () {
         var btn_value = $(this).val();
         btn_value++;
@@ -16,17 +15,28 @@ $(document).ready(function () {
 
         var data = { value: btn_value };
         Sessions.insert(data)
-            .done(function (json) { })
-            .fail(function (xhr, textStatus, errorThrown) {
-                alert("xhr.responseText");
-            });
+            .done(function (json) {
+                session();
+             });
     });
+
+    $('#reset').on("click", function () {
+        $('#click').val(0);
+        $('#click').text(0);
+
+        var data = { value: 0 };
+        Sessions.insert(data)
+            .done(function (json) {
+                session();
+             });
+    });
+    session();
 });
 
 function session() {
     Sessions.getData().done(function (json) {
-        console.log(json.value);
-        //json.platillos.forEach(function (platillo) {
-        //});
+        console.log(json);
+        $('#click').val(json);
+        $('#click').text(json);
     });
 }
